@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>     .button {
+        position: relative;
+        width: 120px;
+        height: 40px;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        color: white;
+        flex-direction: column;
+        justify-content: center;
+        border: none;
+        padding: 12px;
+        gap: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      
+      .button::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        left: -4px;
+        top: -1px;
+        margin: auto;
+        width: 128px;
+        height: 48px;
+        border-radius: 10px;
+        background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+        z-index: -10;
+        pointer-events: none;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      
+      .button::after {
+        content: "";
+        z-index: -1;
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+        transform: translate3d(0, 0, 0) scale(0.95);
+        filter: blur(20px);
+      }
+      
+      .button:hover::after {
+        filter: blur(30px);
+      }
+      
+      .button:hover::before {
+        transform: rotate(-180deg);
+      }
+      
+      .button:active::before {
+        scale: 0.7;
+      }
+      .input {
+ background-color: #383838;
+ border: 1ex solid none;
+ border-top-width: 1.7em;
+ margin: 0;
+ padding: 0;
+ color: #383838;
+ word-wrap: break-word;
+ outline: 7px solid #383838;
+ height: 30px;
+ font-size: 17px;
+ text-align: center;
+ transition: all 1s;
+ max-width: 190px;
+ font-weight: bold;
+ font-family: 'Courier New', Courier, monospace;
+}
+
+.input:hover {
+ border-top-width: 0.2em;
+ background-color: #f1e8e8;
+}
+
+.input:focus {
+ border-top-width: 0.2em;
+ background-color: #f1e8e8;
+}
+
+* {
+    margin: 0; 
+	padding: 0;
+}
+body {
+	background: #ccc; 
+	font-family: arial, verdana, tahoma;
+}
+
+/*Time to apply widths for accordian to work
+Width of image = 640px
+total images = 5
+so width of hovered image = 640px
+width of un-hovered image = 40px - you can set this to anything
+so total container width = 640 + 40*4 = 800px;
+default width = 800/5 = 160px;
+*/
+
+.accordian {
+	width: 805px; height: 320px;
+	overflow: hidden;
+	
+	/*Time for some styling*/
+	margin: 100px auto;
+	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+	-webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+	-moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+}
+
+/*A small hack to prevent flickering on some browsers*/
+.accordian ul {
+	width: 1200px;
+	/*This will give ample space to the last item to move
+	instead of falling down/flickering during hovers.*/
+}
+
+.accordian li {
+	position: relative;
+	display: block;
+	width: 160px;
+	float: left;
+	
+	border-left: 1px solid #888;
+	
+	box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+	
+	/*Transitions to give animation effect*/
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	/*If you hover on the images now you should be able to 
+	see the basic accordian*/
+}
+
+/*Reduce with of un-hovered elements*/
+.accordian ul:hover li {width: 40px;}
+/*Lets apply hover effects now*/
+/*The LI hover style should override the UL hover style*/
+.accordian ul li:hover {width: 640px;}
+
+
+.accordian li img {
+	display: block;
+}
+
+/*Image title styles*/
+.image_title {
+	background: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	left: 0; bottom: 0;	
+width: 640px;	
+
+}
+.image_title a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	padding: 20px;
+	font-size: 16px;
+}
+
+
+
+</style>
+</head>
+<body>
+    <input type="text" name="text" class="input" placeholder="Type your text">
+
+
+    <button class="button">
+        Button
+      </button>
+
+
+      <div class="accordian">
+        <ul>
+        <li>
+          <div class="image_title">
+            <a href="#">KungFu Panda</a>
+          </div> 
+          <a href="#">
+            <img src="https://picsum.photos/530/290/?random=1"/>
+          </a>
+        </li>
+        <li>
+          <div class="image_title">
+            <a href="#">Toy Story 2</a>
+          </div>
+          <a href="#">
+            <img src="https://picsum.photos/530/290"/>
+          </a>
+        </li>
+        <li>
+          <div class="image_title">
+            <a href="#">Wall-E</a>
+          </div>
+          <a href="#">
+            <img src="https://picsum.photos/530/290/?random=1"/>
+          </a>
+        </li>
+        <li>
+          <div class="image_title">
+            <a href="#">Up</a>
+          </div>
+          <a href="#">
+            <img src="https://picsum.photos/530/290?random=1"/>
+          </a>
+        </li>
+        <li>
+          <div class="image_title">
+            <a href="#">Cars 2</a>
+          </div>
+          <a href="#">
+            <img src="https://picsum.photos/530/290/"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+      
+      
+ 
+</body>
+</html>
